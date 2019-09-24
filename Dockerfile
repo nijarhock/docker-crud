@@ -12,7 +12,7 @@ COPY composer.json /var/www/html/
 #Install git
 RUN apt-get update \
     && apt-get install -y git
-RUN docker-php-ext-install pdo pdo_mysql mysqli
+RUN docker-php-ext-install pdo pdo_mysql mysqli php-mysqli
 RUN a2enmod rewrite
 #Install Composer
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
