@@ -1,16 +1,9 @@
 <?php                                         
 error_reporting(E_ALL^E_NOTICE);
-echo $_ENV["DB_HOST"];
-echo "<br>";
-echo $_ENV["DB_USERNAME"];
-echo "<br>";
-echo $_ENV["DB_PASSWORD"];
-echo "<br>";
-echo $_ENV["DB_DATABASE"];
-if(!defined('DB_SERVER')) define("DB_SERVER", $_ENV["DB_HOST"]);
-if(!defined('DB_USER')) define("DB_USER", $_ENV["DB_USERNAME"]);
-if(!defined('DB_PASS')) define("DB_PASS", $_ENV["DB_PASSWORD"]);
-if(!defined('DB_NAME')) define("DB_NAME", $_ENV["DB_DATABASE"]);
+if(!defined('DB_SERVER')) define("DB_SERVER", getenv("DB_HOST"));
+if(!defined('DB_USER')) define("DB_USER", getenv("DB_USERNAME"));
+if(!defined('DB_PASS')) define("DB_PASS", getenv("DB_PASSWORD"));
+if(!defined('DB_NAME')) define("DB_NAME", getenv("DB_DATABASE"));
 
 $conn = mysqli_connect(DB_SERVER, DB_USER, DB_PASS,DB_NAME);
 if (!$conn) {
