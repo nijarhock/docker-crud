@@ -9,6 +9,16 @@ COPY main_function.php /var/www/html/
 COPY axtambah.php /var/www/html/
 COPY composer.json /var/www/html/
 
+#Install git
+RUN apt-get update \
+    && apt-get install -y git
+RUN docker-php-ext-install pdo pdo_mysql mysqli
+RUN a2enmod rewrite
+#Install Composer
+RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+RUN php composer-setup.php --install-dir=. --filename=composer
+RUN mv composer /usr/local/bin/
+
 # Use port 8080 in Apache configuration files.
 RUN sed -i 's/80/${PORT}/g' /etc/apache2/sites-available/000-default.conf /etc/apache2/ports.conf
 
